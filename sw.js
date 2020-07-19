@@ -26,7 +26,7 @@ workbox.clientsClaim();
  */
 self.__precacheManifest = [
   {
-    "url": "webpack-runtime-991fef9d73f90864d5cf.js"
+    "url": "webpack-runtime-62e18941cb6999a20e66.js"
   },
   {
     "url": "styles.48431c38acdaf31cecd8.css"
@@ -50,21 +50,29 @@ self.__precacheManifest = [
     "url": "e6d6ed13-41f92d95f0ef4f512cb2.js"
   },
   {
-    "url": "app-a9134edde829bd2f85fc.js"
+    "url": "app-87f0288b61e3dc55d69f.js"
   },
   {
     "url": "component---node-modules-gatsby-plugin-offline-app-shell-js-f3d0a21fe8149f33caf4.js"
   },
   {
     "url": "offline-plugin-app-shell-fallback/index.html",
-    "revision": "c337580eee92b4063bddf55723cd0c40"
+    "revision": "7f0bb16c3ab9bcb77130a796f287c085"
+  },
+  {
+    "url": "page-data/offline-plugin-app-shell-fallback/page-data.json",
+    "revision": "c7047792c6f91b88e0d9abc0cd819e92"
+  },
+  {
+    "url": "page-data/app-data.json",
+    "revision": "cbe7083e47f1acf197bfa8bc82e500ad"
   },
   {
     "url": "polyfill-118cb73b15f8ba765669.js"
   },
   {
     "url": "manifest.webmanifest",
-    "revision": "6388d601229367653921fc21ad976e51"
+    "revision": "4d894f88db3c40e2642c57b2f1301c8b"
   }
 ].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
@@ -83,12 +91,12 @@ const { NavigationRoute } = workbox.routing
 
 const navigationRoute = new NavigationRoute(async ({ event }) => {
   let { pathname } = new URL(event.request.url)
-  pathname = pathname.replace(new RegExp(`^`), ``)
+  pathname = pathname.replace(new RegExp(`^/Course-Starter-Python`), ``)
 
   // Check for resources + the app bundle
   // The latter may not exist if the SW is updating to a new version
   const resources = await idbKeyval.get(`resources:${pathname}`)
-  if (!resources || !(await caches.match(`/app-a9134edde829bd2f85fc.js`))) {
+  if (!resources || !(await caches.match(`/Course-Starter-Python/app-87f0288b61e3dc55d69f.js`))) {
     return await fetch(event.request)
   }
 
@@ -101,7 +109,7 @@ const navigationRoute = new NavigationRoute(async ({ event }) => {
     }
   }
 
-  const offlineShell = `/offline-plugin-app-shell-fallback/index.html`
+  const offlineShell = `/Course-Starter-Python/offline-plugin-app-shell-fallback/index.html`
   return await caches.match(offlineShell)
 })
 
